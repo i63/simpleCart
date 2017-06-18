@@ -1,5 +1,5 @@
 window.vm = null;
-var url = "http://shop-api-dev.10.0.0.145.xip.io";
+var productsUrl = "/products";
 var togglers=['moreView','homeView'];
 var togglers2=['#productsView','#moreView','#shippingView'];
 /*
@@ -60,7 +60,7 @@ var ViewModel = function() {
   });
  
   self.fetchAll=function(callback){		
-	$.getJSON(url+"/store/"+self.currSubCat()+"/byCat",function(data){		
+	$.getJSON(productsUrl+"/store/"+self.currSubCat()+"/byCat",function(data){		
 		self.products(data);
 		if(undefined!=callback)	
 		callback();
@@ -139,7 +139,7 @@ $(document).ready(function(){
 		ko.applyBindings(vm,$("#moreView")[0]);
 	});		
 	$('.nav-header').css("cursor","pointer");	
-	$.getJSON(url+"/cats",function(data){				
+	$.getJSON(productsUrl+"/cats",function(data){				
 		vm.Cats(data);		
         setTimeout(function(){
             $('.nav-header').click(function (event) {    	                                        	
