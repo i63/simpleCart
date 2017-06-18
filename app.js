@@ -6,10 +6,11 @@
 
 var express = require('express')
   , engine = require('ejs-locals')
-  , app = express();
+  , app = express()
+  , proxy = require('http-proxy-middleware');
 
 exports.init = function(port) {
-
+    app.use('/inventory', proxy({target: 'http://localhost:8000', changeOrigin: true ,  pathRewrite: {'^/inventory':'/'}}));
     app.configure(function(){
         app.set('views', __dirname + '/views');
         app.set('view engine', 'ejs');
@@ -35,7 +36,8 @@ exports.init = function(port) {
     app.use( function(err, req, res, next) {
         res.render('500.ejs', { locals: { error: err }, status: 500 });
     });
-    
+   
+     
     server = app.listen(port);
 
     console.log("Listening on port %d in %s mode", server.address().port, app.settings.env);
