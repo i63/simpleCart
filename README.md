@@ -1,21 +1,2 @@
-SimpleCart is online shopping portal built on nodejs /  mongodb / knockoutjs / bootstrap
-
-
-
-<h2>Usage:-</h2>
-
-<b>Step 1)</b> <br>
-run two instances of node<br>
-1) API:-         <b> c:\\> node store/api/server.js</b>   --this runs on port 3000<br>
-2) Web App:-     <b>c:\\> node store/server.js</b>    --this runs on port 4000<br>
-
-<b>Step 2)</b><br>
-Now goto   http://localhost:8080/   to view the portal
-
-<hr/>
-Where is the db?<br>
-i have created a ready only user on mongohq    <b>default/default</b>. <br>
-Check store/api/routes/store.js for more details<br>
-
-Pic:- 
-<img src='https://raw.github.com/debianmaster/simpleCart/master/static/img/SimpleCart.png'/>
+### Update DC
+`oc env dc store-frontend inventory_svc=inventory-api products_svc=products-api`
