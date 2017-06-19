@@ -11,7 +11,7 @@ var express = require('express')
 
 exports.init = function(port) {
     app.use('/inventory', proxy({target: process.env.inventory_svc, changeOrigin: true ,  pathRewrite: {'^/inventory':'/'}}));
-    app.use('/products', proxy({target: process.env.products_svc, changeOrigin: true ,  pathRewrite: {'^/products':'/'}}));
+    app.use('/products', proxy({target: process.env.products_svc, changeOrigin: true ,  pathRewrite: {'^/products':''}}));
     app.configure(function(){
         app.set('views', __dirname + '/views');
         app.set('view engine', 'ejs');
