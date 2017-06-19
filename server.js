@@ -6,6 +6,7 @@
  */
 
 var app = require('./app').init(process.env.PORT || 8080);
+var os = require("os");
 
 var locals = {
         title: 		 'Embedded Market',
@@ -17,6 +18,10 @@ var locals = {
 app.get('/', function(req,res){
     locals.date = new Date().toLocaleDateString();
     res.render('home.ejs', locals);
+});
+
+app.get('/version', function(req,res){
+    res.send('Hello world v1.1 ' + os.hostname() + '\n');
 });
 
 app.get('/*', function(req, res){
