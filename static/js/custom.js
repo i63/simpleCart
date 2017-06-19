@@ -1,5 +1,6 @@
 window.vm = null;
 var productsUrl = "/products";
+var inventoryUrl ="inventory";
 var togglers=['moreView','homeView'];
 var togglers2=['#productsView','#moreView','#shippingView'];
 /*
@@ -19,6 +20,7 @@ var CartItem = function(product, quantity) {
   self.cost = ko.computed(function(){
     return self.product().price * self.quantity();
   });
+	
 };
  
 // CLASS ViewModel 
@@ -39,6 +41,7 @@ var ViewModel = function() {
   self.products       = ko.observableArray([]);
   self.Cats       	  = ko.observableArray([]);
   self.currSubCat	  = ko.observable(1);
+	self.inventory	  = ko.observableArray([]);
   self.shippingWithPassword = ko.observable(false);
   /**
    * Computed Observables
@@ -51,6 +54,16 @@ var ViewModel = function() {
     return subtotal;
   });
  
+  self.stock = function(product_id){
+		var in_stock=0;
+    $(self.inventory()).each(function(index, inv_item){		
+			console.log(inv_item);
+      if(inv_item.product_id==product_id)
+			in_stock=inv_item.product_availabilty;
+    });
+    return in_stock;
+  };
+
   self.tax = ko.computed(function(){
     return (self.subtotal() * self.sales_tax());
   });
@@ -148,6 +161,10 @@ $(document).ready(function(){
 			$('.nav-header:not(:eq(0))').click().click();						
         },500);		
 	});		
+	$.getJSON(inventoryUrl+"/inventory",function(data){	
+		console.log(data);			
+		vm.inventory(data.result);	
+	});	
 	if(undefined!=$.jStorage.get('cart')){							
 		var prts = $.parseJSON($.jStorage.get('cart'));				
 		$.each(prts,function(ind,item){

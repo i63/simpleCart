@@ -7,6 +7,7 @@
 
 var app = require('./app').init(process.env.PORT || 8080);
 var os = require("os");
+var healthy=true;
 
 var locals = {
         title: 		 'Embedded Market',
@@ -25,6 +26,11 @@ app.get('/healthz', function(req,res){
    res.send('OK');
    else
    res.status(404).send('NOT OK');
+});
+
+app.get('/cancer', function(req,res){
+   healthy=false;
+   res.send('Killed' + os.hostname());
 });
 
 app.get('/version', function(req,res){

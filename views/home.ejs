@@ -16,7 +16,7 @@
 				  <img alt="" data-bind="attr:{src:$data.img}">
 				  <div class="caption">              
 					<h5 data-bind="text:$data.name"></h5>		        
-					<p>$<span data-bind="text:$data.price"></span></p>                
+					<p>Price: $<span data-bind="text:$data.price"></span> &nbsp;&nbsp;&nbsp; Stock: <span data-bind="text: $parent.stock($data.product_id)"></p>    		                    
 					<a data-bind="click: $parent.addToCart" href="#" class="btn btn-mini btn-success" id="btnHomeViewAdd2Cart">
 					  <i class="icon-plus icon-white"></i> Add
 					</a>
