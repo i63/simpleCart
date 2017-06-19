@@ -20,6 +20,13 @@ app.get('/', function(req,res){
     res.render('home.ejs', locals);
 });
 
+app.get('/healthz', function(req,res){
+   if(healthy)
+   res.send('OK');
+   else
+   res.status(404).send('NOT OK');
+});
+
 app.get('/version', function(req,res){
     res.send('Hello world v1.1 ' + os.hostname() + '\n');
 });
