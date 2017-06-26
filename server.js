@@ -34,7 +34,7 @@ app.get('/cancer', function(req,res){
 });
 
 app.get('/version', function(req,res){
-    res.send('Hello world v1.1 ' + os.hostname() + '\n');
+    res.send('Hello world v1.2 ' + os.hostname() + '\n');
 });
 
 app.get('/*', function(req, res){
