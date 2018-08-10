@@ -37,6 +37,6 @@ app.get('/version', function(req,res){
     res.send('Hello world v1.4 ' + os.hostname() + '\n');
 });
 
-app.get('/*', function(req, res){
+app.get('/notfound', function(req, res){
     res.render('404.ejs', locals);
 });
